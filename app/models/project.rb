@@ -1,14 +1,10 @@
-class Project
-  attr_accessor :tasks, :due_date
-
-  def initialize
-    @tasks = []
-  end
+class Project < ApplicationRecord
+  has_many :tasks, dependent: :destroy
 
   def self.velocity_length_in_days
     21
   end
-  
+
   def done?
     tasks.all?(&:complete?)
   end
